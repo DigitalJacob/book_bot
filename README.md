@@ -115,8 +115,6 @@ book_bot/
 
 When reading a book, the bot shows three inline buttons:
 
-When reading a book, the bot shows three inline buttons:
-
 | Button | Action                                                        |
 |--------|---------------------------------------------------------------|
 | `<<` | Go to previous page                                           |
