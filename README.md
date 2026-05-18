@@ -69,6 +69,7 @@ cp .env.example .env
 Edit .env and add your bot token:
 
 BOT_TOKEN=your_telegram_bot_token_here
+
 LOG_LEVEL=your_log_level #DEBUG for development, INFO for production
 
 Get your token from @BotFather.
