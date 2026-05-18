@@ -1,0 +1,5 @@
+aiogram>=3.27.0
+python-dotenv>=1.2.2
+environs>=15.0.1
+aiohttp-socks>=0.10.1
+aiofiles>=24.1.0
