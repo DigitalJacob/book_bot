@@ -42,7 +42,7 @@ A Telegram bot for reading books with bookmark support, page-by-page navigation,
 ### 1. Clone the repository
 
 ```bash
-git clone git@github.com:akovveretin/book_bot.git
+git clone git@github.com:DigitalJacob/book_bot.git
 cd book_bot
 ```
 
