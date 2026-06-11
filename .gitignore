@@ -31,3 +31,7 @@ Thumbs.db
 # Environment
 .env
 .env.local
+
+# Books
+books/*.txt
+!books/.gitkeep

@@ -16,7 +16,9 @@ def prepare_book(path: str, page_size: int = 650) -> dict[int, str]:
     page_number = 1
 
     with open(path, encoding='utf-8') as file:
-        all_text = file.read().lstrip()
+        lines = file.readlines()
+        non_empty_lines = [line for line in lines if line.strip()]
+        all_text = ''.join(non_empty_lines)
 
     while start < len(all_text):
         page_text, page_length = _get_part_text(all_text, start, page_size)

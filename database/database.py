@@ -1,14 +1,16 @@
 import json
 from pathlib import Path
+from copy import deepcopy
 
 import aiofiles
+
 
 DB_PATH = Path(__file__).parent.parent / 'db.json'
 
 
 def get_empty_db() -> dict:
     return {
-        "user_template": {"page": 1, "bookmarks": []},
+        "user_template": {"current_book": None, "books": {}},
         "users": {}
     }
 
@@ -21,9 +23,10 @@ async def load_db() -> dict:
         content = await f.read()
         data = json.loads(content)
 
-    for user_id, user_data in data.get('users', {}).items():
-        if 'bookmarks' in user_data and isinstance(user_data['bookmarks'], list):
-            user_data['bookmarks'] = set(user_data['bookmarks'])
+    for user_data in data.get('users', {}).values():
+        for book_data in user_data.get('books', {}).values():
+            if 'bookmarks' in book_data and isinstance(book_data['bookmarks'], list):
+                book_data['bookmarks'] = set(book_data['bookmarks'])
 
     return data
 
@@ -35,9 +38,10 @@ async def save_db(data: dict) -> None:
     }
 
     for user_id, user_data in data.get('users', {}).items():
-        user_copy = user_data.copy()
-        if 'bookmarks' in user_copy:
-            user_copy['bookmarks'] = list(user_copy['bookmarks'])
+        user_copy = deepcopy(user_data)
+        for book_data in user_copy.get('books', {}).values():
+            if 'bookmarks' in book_data:
+                book_data['bookmarks'] = list(book_data['bookmarks'])
         data_copy['users'][user_id] = user_copy
 
     async with aiofiles.open(DB_PATH, 'w', encoding='utf-8') as f:
