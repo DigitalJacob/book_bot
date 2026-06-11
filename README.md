@@ -96,13 +96,19 @@ Bot configured and starting
 
 Each book is a single plain-text file encoded in **UTF-8**.
 
-Current library:
+Book files are **not included in the repository** (they are listed in `.gitignore` to avoid shipping copyrighted text). After cloning, the folder exists but is empty — you add your own `.txt` files locally:
 
 ```
 books/
-├── Ангелы_и_демоны.txt
-├── Заводной_апельсин.txt
-└── По_осколкам_твоего_сердца.txt
+└── .gitkeep          # keeps the folder in git; add your .txt files here
+```
+
+Example after adding books:
+
+```
+books/
+├── War_and_Peace.txt
+└── My_Favorite_Novel.txt
 ```
 
 **The filename without `.txt` is the book ID** used in the bot and in `db.json`.  
@@ -144,7 +150,7 @@ No code changes are required. `BookManager` scans `books/` on every startup.
 
 ```
 book_bot/
-├── books/                     # Book text files (.txt, UTF-8)
+├── books/                     # Book text files (.txt, UTF-8, not committed)
 ├── config/                    # Configuration from .env
 ├── database/                  # db.json load/save logic
 ├── filters/                   # Custom callback filters
